@@ -14,6 +14,10 @@ class ImagesListViewController: UIViewController {
         return formatter
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+                return .lightContent
+            }
+    
     func configCell(for cell: ImagesListCell) { }
     
     

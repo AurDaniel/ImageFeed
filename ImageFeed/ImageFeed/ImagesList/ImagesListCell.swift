@@ -12,4 +12,5 @@ final class ImagesListCell: UITableViewCell {
     
     @IBOutlet var dateLabel: UILabel!
     
+    @IBOutlet var shadowImage: UIImageView!
 }
