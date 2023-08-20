@@ -1,22 +1,22 @@
 import UIKit
 
 class ImagesListViewController: UIViewController {
-
-
+    
+    
     @IBOutlet private var tableViewContent: UITableView!
     
     private let photoNames: [String] = Array(0..<20).map { "\($0)" }
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
+        formatter.dateFormat = "dd MMMM yyyy"
+        formatter.locale = Locale(identifier: "ru_RU")
         return formatter
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-                return .lightContent
-            }
+        return .lightContent
+    }
     
     func configCell(for cell: ImagesListCell) { }
     
@@ -24,25 +24,25 @@ class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
     }
-
+    
 }
 
 extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photoNames.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
-
+        
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
-
+        
         configCell(for: imageListCell, with: indexPath)
-
+        
         return imageListCell
     }
 }
@@ -52,12 +52,12 @@ extension ImagesListViewController {
         guard let image = UIImage(named: photoNames[indexPath.row]) else {
             return
         }
-
+        
         cell.imageCell.image = image
         cell.dateLabel.text = dateFormatter.string(from: Date())
-
+        
         let isLiked = indexPath.row % 2 == 0
-        let likeImage = isLiked ? UIImage(named: "Like") : UIImage(named: "noLike")
+        let likeImage = isLiked ? UIImage(named: "noLike") : UIImage(named: "Like")
         cell.likeButton.setImage(likeImage, for: .normal)
     }
 }
@@ -65,7 +65,7 @@ extension ImagesListViewController {
 
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let image = UIImage(named: photoNames[indexPath.row]) else {
             return 0
