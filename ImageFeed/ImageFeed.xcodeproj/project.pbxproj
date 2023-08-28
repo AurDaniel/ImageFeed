@@ -79,11 +79,11 @@
 		077F81A62A51E63A00700148 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
-				072056CB2A80091300A155A2 /* ImagesList */,
-				07E571632A9A831200F2CFFF /* SingleImage */,
-				0758EDCD2A92779800FDDA38 /* Profile */,
 				077F81A72A51E63A00700148 /* AppDelegate.swift */,
 				077F81A92A51E63A00700148 /* SceneDelegate.swift */,
+				0758EDCD2A92779800FDDA38 /* Profile */,
+				072056CB2A80091300A155A2 /* ImagesList */,
+				07E571632A9A831200F2CFFF /* SingleImage */,
 				077F81AD2A51E63A00700148 /* Main.storyboard */,
 				077F81B02A51E63C00700148 /* Assets.xcassets */,
 				077F81B22A51E63C00700148 /* LaunchScreen.storyboard */,
