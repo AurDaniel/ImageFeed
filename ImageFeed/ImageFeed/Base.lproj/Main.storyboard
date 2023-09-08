@@ -51,8 +51,8 @@
                                                         <constraint firstAttribute="height" constant="30" id="aOa-u1-Kxi"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04 августа 2023" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="103" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-l0-c4t" userLabel="Date Label">
-                                                    <rect key="frame" x="24" y="196.33333333333334" width="103" height="15.666666666666657"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 сентября 2023" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="152" translatesAutoresizingMaskIntoConstraints="NO" id="B3A-l0-c4t" userLabel="Date Label">
+                                                    <rect key="frame" x="24.000000000000007" y="196.33333333333334" width="113.66666666666669" height="15.666666666666657"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                                     <color key="textColor" name="YT Colors"/>
                                                     <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="3"/>
+            <point key="canvasLocation" x="937.85046728971952" y="2.5917926565874732"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fHr-Er-ZW2">
