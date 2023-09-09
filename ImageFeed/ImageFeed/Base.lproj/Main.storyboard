@@ -230,10 +230,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="Sp4-cN-Nu3" userLabel="Single ImageView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeH-Vg-fWa">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vvf-RG-CLx">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="414" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="Sp4-cN-Nu3" userLabel="Single ImageView">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Sp4-cN-Nu3" firstAttribute="top" secondItem="8r4-ow-kgc" secondAttribute="top" id="1Db-qc-bYI"/>
+                                    <constraint firstItem="Sp4-cN-Nu3" firstAttribute="leading" secondItem="8r4-ow-kgc" secondAttribute="leading" id="9ws-Id-kdx"/>
+                                    <constraint firstItem="Sp4-cN-Nu3" firstAttribute="trailing" secondItem="8r4-ow-kgc" secondAttribute="trailing" id="fd5-1A-f1k"/>
+                                    <constraint firstItem="Sp4-cN-Nu3" firstAttribute="bottom" secondItem="8r4-ow-kgc" secondAttribute="bottom" id="jcB-Z3-HRD"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="dWJ-Io-uOQ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="8r4-ow-kgc"/>
+                                <connections>
+                                    <outlet property="delegate" destination="x7i-6z-fJZ" id="eLd-Vm-5Nl"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4w-dA-Nl3" userLabel="shareButton">
+                                <rect key="frame" x="190" y="797" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="QXR-Mp-8gc"/>
+                                    <constraint firstAttribute="width" constant="50" id="rOW-CH-4l3"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="shareButton"/>
+                                <connections>
+                                    <action selector="didTapShareButton" destination="x7i-6z-fJZ" eventType="touchUpInside" id="WaA-Hm-xdY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vvf-RG-CLx" userLabel="backButton">
                                 <rect key="frame" x="8" y="67" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="VxH-Az-cgY"/>
@@ -249,16 +277,18 @@
                         <viewLayoutGuide key="safeArea" id="9Q2-Bd-Ry3"/>
                         <color key="backgroundColor" name="YT Black"/>
                         <constraints>
-                            <constraint firstItem="Sp4-cN-Nu3" firstAttribute="trailing" secondItem="9Q2-Bd-Ry3" secondAttribute="trailing" id="LEs-AF-TmN"/>
-                            <constraint firstItem="Sp4-cN-Nu3" firstAttribute="leading" secondItem="9Q2-Bd-Ry3" secondAttribute="leading" id="LV2-06-ixx"/>
-                            <constraint firstItem="Sp4-cN-Nu3" firstAttribute="top" secondItem="RXX-yN-vLx" secondAttribute="top" id="Puw-9O-7rS"/>
-                            <constraint firstAttribute="bottom" secondItem="Sp4-cN-Nu3" secondAttribute="bottom" id="VXi-UP-zS2"/>
-                            <constraint firstItem="Vvf-RG-CLx" firstAttribute="leading" secondItem="9Q2-Bd-Ry3" secondAttribute="leading" constant="8" id="WPv-dD-59f"/>
-                            <constraint firstItem="Vvf-RG-CLx" firstAttribute="top" secondItem="9Q2-Bd-Ry3" secondAttribute="top" constant="8" id="WQ8-B8-2vi"/>
+                            <constraint firstItem="Vvf-RG-CLx" firstAttribute="top" secondItem="9Q2-Bd-Ry3" secondAttribute="top" constant="8" id="1dM-Wk-XUB"/>
+                            <constraint firstItem="eeH-Vg-fWa" firstAttribute="trailing" secondItem="9Q2-Bd-Ry3" secondAttribute="trailing" id="G58-nb-EMu"/>
+                            <constraint firstItem="r4w-dA-Nl3" firstAttribute="centerX" secondItem="RXX-yN-vLx" secondAttribute="centerX" id="S5C-kv-cpO"/>
+                            <constraint firstAttribute="bottom" secondItem="r4w-dA-Nl3" secondAttribute="bottom" constant="85" id="WOb-mr-PuC"/>
+                            <constraint firstItem="Vvf-RG-CLx" firstAttribute="leading" secondItem="9Q2-Bd-Ry3" secondAttribute="leading" constant="8" id="cXG-gO-ZJK"/>
+                            <constraint firstAttribute="bottom" secondItem="eeH-Vg-fWa" secondAttribute="bottom" id="n53-rF-NWT"/>
+                            <constraint firstItem="eeH-Vg-fWa" firstAttribute="top" secondItem="RXX-yN-vLx" secondAttribute="top" id="r6m-13-mSA"/>
+                            <constraint firstItem="eeH-Vg-fWa" firstAttribute="leading" secondItem="9Q2-Bd-Ry3" secondAttribute="leading" id="rqT-qi-ks7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="n07-Jq-z5P"/>
                     <connections>
+                        <outlet property="scrollView" destination="eeH-Vg-fWa" id="9XS-Ar-rYh"/>
                         <outlet property="singleImageView" destination="Sp4-cN-Nu3" id="sAG-0V-7f4"/>
                     </connections>
                 </viewController>
@@ -274,6 +304,7 @@
         <image name="Like" width="42" height="42"/>
         <image name="profilePhoto" width="70" height="70"/>
         <image name="shadow" width="343" height="30"/>
+        <image name="shareButton" width="50.333332061767578" height="50"/>
         <image name="tab_editorial_active" width="20" height="22"/>
         <image name="tab_profile_active" width="30" height="30"/>
         <namedColor name="YT Black">
