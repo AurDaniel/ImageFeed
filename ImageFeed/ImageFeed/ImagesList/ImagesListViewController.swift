@@ -2,6 +2,9 @@ import UIKit
 
 class ImagesListViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBOutlet private var tableViewContent: UITableView!
     
@@ -15,10 +18,6 @@ class ImagesListViewController: UIViewController {
         formatter.locale = Locale(identifier: "ru_RU")
         return formatter
     }()
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ShowSingleImageSequtIdentifier {
