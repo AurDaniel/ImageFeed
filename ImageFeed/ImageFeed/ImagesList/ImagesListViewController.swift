@@ -2,10 +2,15 @@ import UIKit
 
 class ImagesListViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBOutlet private var tableViewContent: UITableView!
     
     private let photoNames: [String] = Array(0..<20).map { "\($0)" }
+    
+    private let ShowSingleImageSequtIdentifier = "ShowSingleImage"
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -14,8 +19,15 @@ class ImagesListViewController: UIViewController {
         return formatter
     }()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == ShowSingleImageSequtIdentifier {
+            let viewController = segue.destination as! SingleImageViewController
+            let indexPath = sender as! IndexPath
+            let image = UIImage(named: photoNames[indexPath.row])
+            viewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
     func configCell(for cell: ImagesListCell) { }
@@ -64,7 +76,10 @@ extension ImagesListViewController {
 
 
 extension ImagesListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: ShowSingleImageSequtIdentifier, sender: indexPath)
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let image = UIImage(named: photoNames[indexPath.row]) else {
