@@ -1,13 +1,11 @@
 import UIKit
 import WebKit
 
-protocol WebViewViewControllerDelegate: AnyObject {
-    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
-    func webViewViewControllerDidCancel(_ vs: WebViewViewController)
-}
-
-
 final class WebViewViewController: UIViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     
     private struct WebConstants {
         static let authorizeURL = "https://unsplash.com/oauth/authorize"
@@ -26,9 +24,41 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadWebView()
+        var preferredStatusBarStyle: UIStatusBarStyle {
+            .lightContent
+        }
         webView.navigationDelegate = self
+        loadWebView()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        webView.addObserver(
+            self,
+            forKeyPath: #keyPath(WKWebView.estimatedProgress),
+            options: .new,
+            context: nil)
+        updateProgress()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(WKWebView.estimatedProgress) {
+            updateProgress()
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+    
+    private func updateProgress() {
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
 }
 
@@ -36,10 +66,10 @@ private extension WebViewViewController {
     func loadWebView() {
         var urlComponents = URLComponents(string: WebConstants.authorizeURL)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: Constants.AccessKey),
-            URLQueryItem(name: "redirect_uri", value: Constants.RedirectURI),
+            URLQueryItem(name: "client_id", value: Constants.accessKey),
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
             URLQueryItem(name: "response_type", value: WebConstants.code),
-            URLQueryItem(name: "scope", value: Constants.AccessScope)
+            URLQueryItem(name: "scope", value: Constants.accessScope)
         ]
         
         if let url = urlComponents.url {
@@ -57,13 +87,13 @@ extension WebViewViewController: WKNavigationDelegate {
             
             print("Вот оно", navigationAction.request.url ?? "Pizdet")
             
-        if let code = fetchCode(url: navigationAction.request.url) {
-            delegate?.webViewViewController(self, didAuthenticateWithCode: code)
-            decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
+            if let code = fetchCode(url: navigationAction.request.url) {
+                delegate?.webViewViewController(self, didAuthenticateWithCode: code)
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
         }
-    }
     
     private func fetchCode(url: URL?) -> String? {
         guard let url = url,

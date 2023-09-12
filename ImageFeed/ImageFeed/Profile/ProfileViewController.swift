@@ -1,12 +1,14 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     @objc
     private func didTapButton() {
+        
     }
     
     private func addSubview(_ view: UIView) {
