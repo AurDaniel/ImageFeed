@@ -6,7 +6,6 @@ final class SplashViewController: UIViewController {
         return .lightContent
     }
     
-    
     private let showAuthSegueIdentifier = "splashSegueIdentifier"
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
@@ -24,7 +23,6 @@ final class SplashViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
     }
 }
 
