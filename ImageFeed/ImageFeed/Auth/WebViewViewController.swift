@@ -13,7 +13,7 @@ final class WebViewViewController: UIViewController {
         static let authorizePath = "/oauth/authorize/native"
     }
     
-    var delegate: WebViewViewControllerDelegate?
+    weak var delegate: WebViewViewControllerDelegate?
     
     @IBOutlet private var webView: WKWebView!
     @IBOutlet private var progressView: UIProgressView!
