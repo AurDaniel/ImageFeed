@@ -1,4 +1,5 @@
 import UIKit
+import ProgressHUD
 
 final class SplashViewController: UIViewController {
     
@@ -13,7 +14,6 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if oauth2TokenStorage.token != nil {
             switchToTabBarController()
         } else {
@@ -43,6 +43,7 @@ extension SplashViewController: AuthViewControllerDelegate{
 
 extension SplashViewController {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        ProgressHUD.show(symbol: "multiply.circle.fill")
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.fetchAuthToken(code)
@@ -64,7 +65,9 @@ extension SplashViewController {
             switch result {
             case .success:
                 self.switchToTabBarController()
+                ProgressHUD.dismiss()
             case .failure:
+                ProgressHUD.dismiss()
                 print("FAIL (No token found!)")
                 break
             }
