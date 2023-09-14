@@ -2,17 +2,13 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private var profileImageView: UIImageView?
-    private var nameLabel: UILabel?
-    private var socialLinkLabel: UILabel?
-    private var descriptionLabel: UILabel?
-    private var logOutButton: UIButton?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     @objc
     private func didTapButton() {
+        
     }
     
     private func addSubview(_ view: UIView) {
@@ -47,7 +43,6 @@ final class ProfileViewController: UIViewController {
         translatesMaskToConstraints(nameLabel)
         addSubview(nameLabel)
         
-        
         let socialLinkLabel = UILabel()
         socialLinkLabel.text = "t/me.aurdaniel"
         socialLinkLabel.textColor = .ytGray
@@ -61,7 +56,6 @@ final class ProfileViewController: UIViewController {
         descriptionLabel.font = .systemFont(ofSize: 13)
         translatesMaskToConstraints(descriptionLabel)
         addSubview(descriptionLabel)
-        
         
         NSLayoutConstraint.activate([
             
@@ -85,10 +79,5 @@ final class ProfileViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor)
             
         ])
-        
-        
     }
-    
-    
-    
 }
